@@ -12,15 +12,6 @@ workflows:
         BUNDLE_ID: "com.bookmylook.app"
       node: latest
     scripts:
-      - name: Install dependencies
-        script: |
-          npm install
-      - name: Build web app
-        script: |
-          npm run build
-      - name: Sync Capacitor
-        script: |
-          npx cap sync ios
       - name: Install CocoaPods dependencies
         script: |
           cd ios/App
