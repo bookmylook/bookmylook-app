@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookMyLook - Diagnostic Test APK</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 700px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .version {
+            color: #667eea;
+            font-size: 16px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .badge {
+            display: inline-block;
+            background: #ffc107;
+            color: #333;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            margin-right: 10px;
+        }
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 20px 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .info-box h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .info-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .info-box li {
+            padding: 8px 0;
+            color: #555;
+            line-height: 1.6;
+        }
+        .info-box li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            color: #856404;
+        }
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            color: #155724;
+            font-weight: 600;
+        }
+        .file-size {
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .steps {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .steps ol {
+            padding-left: 20px;
+        }
+        .steps li {
+            padding: 8px 0;
+            color: #555;
+            line-height: 1.6;
+        }
+        .highlight {
+            background: #fff9e6;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .highlight h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 BookMyLook Diagnostic Test</h1>
+        <div class="version">Find Out WHY Blank Screen is Happening</div>
+        <div class="badge">⚠️ TEST BUILD - NOT THE REAL APP</div>
+        
+        <div class="warning">
+            <strong>🎯 Purpose:</strong><br>
+            This is a SIMPLE TEST to diagnose why you're getting a blank screen. It replaces the real app with a basic HTML page to test if the Android WebView works at all.
+        </div>
+
+        <div style="text-align: center;">
+            <a href="/BookMyLook-TEST-DIAGNOSTIC.zip" class="download-btn" download>
+                ⬇️ Download Diagnostic Test
+            </a>
+            <div class="file-size">File size: ~3.1 MB</div>
+        </div>
+
+        <div class="highlight">
+            <h3>🧪 What This Test Will Tell Us:</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 5px 0;"><strong>✅ If you see a purple test page:</strong> WebView works! Problem is the main app.</li>
+                <li style="padding: 5px 0;"><strong>❌ If still blank:</strong> WebView itself is broken.</li>
+                <li style="padding: 5px 0;"><strong>📊 Test buttons show:</strong> Which part is failing.</li>
+            </ul>
+        </div>
+
+        <div class="steps">
+            <h3 style="margin-bottom: 15px;">🔧 How to Test:</h3>
+            <ol>
+                <li>Download and extract the ZIP file</li>
+                <li>Open Android Studio</li>
+                <li>File → Open → Select the <code>android</code> folder</li>
+                <li>Build → Build APK</li>
+                <li>Install APK on your device</li>
+                <li>Open the app</li>
+            </ol>
+        </div>
+
+        <div class="info-box">
+            <h3>📱 What You Should See:</h3>
+            <ul>
+                <li>Purple gradient background</li>
+                <li>"WebView is Working!" message</li>
+                <li>Two test buttons</li>
+                <li>Diagnostic log showing tests</li>
+            </ul>
+        </div>
+
+        <div class="info-box" style="background: #e7f3ff; border-left-color: #0066cc;">
+            <h3>📊 After Testing, Tell Me:</h3>
+            <ul style="list-style: decimal; padding-left: 20px;">
+                <li style="padding: 5px 0;">Can you see the purple test page? (YES/NO)</li>
+                <li style="padding: 5px 0;">What does the diagnostic log say?</li>
+                <li style="padding: 5px 0;">Do the test buttons work?</li>
+                <li style="padding: 5px 0;">Any error messages?</li>
+            </ul>
+        </div>
+
+        <div class="steps" style="background: #d4edda; border-color: #28a745;">
+            <h3 style="margin-bottom: 15px; color: #155724;">🎯 What Happens Next:</h3>
+            <p style="margin: 10px 0; color: #155724;">
+                Based on your test results, I'll know EXACTLY what's causing the blank screen and how to fix it. This test takes 5 minutes but saves hours of guessing!
+            </p>
+        </div>
+
+        <div class="info-box">
+            <h3>🔐 Signing Info (Same as before):</h3>
+            <ul>
+                <li>Keystore: bookmylook-new.keystore</li>
+                <li>Password: BookMyLook2025</li>
+                <li>Alias: bookmylook</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #e9ecef; color: #666; font-size: 14px;">
+            <p><strong>Remember:</strong> This is NOT your final app. It's just a diagnostic tool.</p>
+            <p style="margin-top: 10px;"><strong>Goal:</strong> Find the blank screen cause, then fix the real app.</p>
+            <p style="margin-top: 5px;"><strong>Time needed:</strong> 5 minutes to test</p>
+        </div>
+    </div>
+</body>
+</html>

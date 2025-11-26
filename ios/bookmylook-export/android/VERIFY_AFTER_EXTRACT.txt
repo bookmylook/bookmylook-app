@@ -1,0 +1,22 @@
+AFTER EXTRACTING android.zip - VERIFY THESE FILES EXIST:
+
+1. CHECK WEB ASSETS (MOST IMPORTANT):
+   android/app/src/main/assets/public/assets/index-C68n44Hd.js  (662 KB)
+   android/app/src/main/assets/public/assets/index-CHS3QsIT.css (130 KB)
+   android/app/src/main/assets/public/index.html
+
+2. CHECK MAIN CODE:
+   android/app/src/main/java/com/bookmylook/app/MainActivity.java
+
+3. CHECK KEYSTORE:
+   android/bookmylook-new.keystore (2.7 KB)
+
+4. CHECK CONFIG:
+   android/app/build.gradle
+   android/app/src/main/AndroidManifest.xml
+
+IF ANY FILE IS MISSING, DO NOT BUILD - CONTACT ME IMMEDIATELY.
+
+The zip file is 1.2 MB compressed.
+After extraction, the folder will be 3.3 MB.
+This is normal zip compression behavior.

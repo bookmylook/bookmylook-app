@@ -1,0 +1,50 @@
+======================================================
+BookMyLook - Android APK Build Instructions
+======================================================
+
+✅ Your app is configured to use: https://bookmylook-listenrayees.replit.app
+
+STEPS TO BUILD APK:
+
+1. EXTRACT THE ZIP FILE
+   - Extract "BookMyLook-Android-Build.zip" to a folder on your computer
+
+2. OPEN IN ANDROID STUDIO
+   - Open Android Studio
+   - Click "Open an existing Android Studio project"
+   - Navigate to the extracted "android" folder
+   - Click "OK"
+
+3. BUILD THE APK
+   - Wait for Gradle sync to complete (this may take a few minutes)
+   - Go to: Build → Build Bundle(s) / APK(s) → Build APK(s)
+   - Wait for build to complete
+   - Click "locate" in the popup to find your APK file
+
+4. INSTALL ON DEVICE
+   - Transfer the APK to your Android phone
+   - Install and open the app
+
+======================================================
+IMPORTANT NOTES:
+======================================================
+
+✅ The app is already configured to connect to your published server
+✅ Any carousel images you upload at /admin will appear instantly in the app
+✅ No need to rebuild APK for:
+   - Carousel image updates
+   - Price changes
+   - Backend fixes
+   - Feature updates
+
+🔄 Only rebuild APK if you change:
+   - App icon or splash screen
+   - Native plugins
+   - App name or version
+
+======================================================
+YOUR ADMIN PANEL:
+https://bookmylook-listenrayees.replit.app/admin
+
+Upload carousel images here and they appear instantly in the mobile app!
+======================================================
