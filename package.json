@@ -1,0 +1,13 @@
+{
+  "name": "bookmylook-app",
+  "version": "2.7.1",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'Pre-built'"
+  },
+  "dependencies": {
+    "@capacitor/core": "^7.4.2",
+    "@capacitor/ios": "^7.4.2",
+    "capacitor-razorpay": "^1.3.0"
+  }
+}
