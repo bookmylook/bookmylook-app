@@ -4,8 +4,11 @@ workflows:
     max_build_duration: 60
     instance_type: mac_mini_m1
     integrations:
-      app_store_connect: BookMyLook Admin
+      app_store_connect: BookMyLook
     environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.bookmylook.app
       vars:
         XCODE_WORKSPACE: "ios/App/App.xcworkspace"
         XCODE_SCHEME: "App"
@@ -22,11 +25,6 @@ workflows:
       - name: Initialize keychain
         script: |
           keychain initialize
-      - name: Fetch signing files
-        script: |
-          app-store-connect fetch-signing-files "$BUNDLE_ID" \
-            --type IOS_APP_STORE \
-            --create
       - name: Add certificates to keychain
         script: |
           keychain add-certificates
@@ -36,8 +34,8 @@ workflows:
       - name: Set build version
         script: |
           cd ios/App
-          agvtool new-version -all 55
-          agvtool new-marketing-version 2.7.1
+          agvtool new-version -all 56
+          agvtool new-marketing-version 2.7.2
       - name: Build iOS app
         script: |
           xcode-project build-ipa \
