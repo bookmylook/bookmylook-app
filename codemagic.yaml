@@ -34,8 +34,8 @@ workflows:
       - name: Set build version
         script: |
           cd ios/App
-          agvtool new-version -all 58
-          agvtool new-marketing-version 2.7.3
+          agvtool new-version -all 60
+          agvtool new-marketing-version 2.7.5
       - name: Build iOS app
         script: |
           xcode-project build-ipa \
@@ -52,7 +52,7 @@ workflows:
         submit_to_testflight: true
       email:
         recipients:
-          - rayaborahees@gmail.com
+          - listenrayees@gmail.com
         notify:
           success: true
           failure: true
