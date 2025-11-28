@@ -34,8 +34,8 @@ workflows:
       - name: Set build version
         script: |
           cd ios/App
-          agvtool new-version -all 61
-          agvtool new-marketing-version 2.7.6
+          agvtool new-version -all 62
+          agvtool new-marketing-version 2.7.7
       - name: Build iOS app
         script: |
           xcode-project build-ipa \
