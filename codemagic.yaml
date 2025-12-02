@@ -18,6 +18,12 @@ workflows:
       - name: Install npm dependencies
         script: |
           npm install
+      - name: Build web assets
+        script: |
+          npm run build
+      - name: Sync Capacitor iOS
+        script: |
+          npx cap sync ios
       - name: Install CocoaPods dependencies
         script: |
           cd ios/App
@@ -34,7 +40,7 @@ workflows:
       - name: Set build version
         script: |
           cd ios/App
-          agvtool new-version -all 59
+          agvtool new-version -all 62
           agvtool new-marketing-version 2.7.4
       - name: Build iOS app
         script: |
@@ -45,11 +51,6 @@ workflows:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
     publishing:
-      app_store_connect:
-        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
-        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
-        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
-        submit_to_testflight: true
       email:
         recipients:
           - listenrayees@gmail.com
@@ -60,7 +61,7 @@ workflows:
   android-production:
     name: Android Production Build
     max_build_duration: 60
-    instance_type: mac_mini_m1
+    instance_type: linux_x2
     environment:
       groups:
         - keystore_credentials
@@ -75,26 +76,26 @@ workflows:
       - name: Build web assets
         script: |
           npm run build
-      - name: Sync Capacitor
+      - name: Sync Capacitor Android
         script: |
           npx cap sync android
       - name: Set Android version
         script: |
           cd android
-          echo "android.versionCode=59" >> gradle.properties
-          echo "android.versionName=2.7.4" >> gradle.properties
-      - name: Build Android release
+          sed -i 's/versionCode [0-9]*/versionCode 62/' app/build.gradle
+          sed -i 's/versionName "[^"]*"/versionName "2.7.4"/' app/build.gradle
+      - name: Build Android AAB
         script: |
           cd android
           ./gradlew bundleRelease
+      - name: Build Android APK
+        script: |
+          cd android
+          ./gradlew assembleRelease
     artifacts:
       - android/app/build/outputs/**/*.aab
       - android/app/build/outputs/**/*.apk
     publishing:
-      google_play:
-        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
-        track: production
-        submit_as_draft: true
       email:
         recipients:
           - listenrayees@gmail.com
