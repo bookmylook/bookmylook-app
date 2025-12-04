@@ -1,0 +1,6 @@
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="192" height="192" rx="24" fill="#1e40af"/>
+  <path d="M96 48c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm0 84c-19.882 0-36-16.118-36-36s16.118-36 36-36 36 16.118 36 36-16.118 36-36 36z" fill="white"/>
+  <circle cx="96" cy="96" r="24" fill="white"/>
+  <text x="96" y="36" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">BookMyLook</text>
+</svg>
