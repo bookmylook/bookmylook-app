@@ -2,15 +2,31 @@
   "images" : [
     {
       "filename" : "AppIcon-512@2x.png",
-      "idiom" : "ios",
-      "scale" : "2x",
-      "size" : "512x512"
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
     },
     {
-      "filename" : "AppIcon-512@2x.png",
-      "idiom" : "ios",
-      "scale" : "3x",
-      "size" : "512x512"
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "tinted"
+        }
+      ],
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
     }
   ],
   "info" : {
