@@ -1,0 +1,27 @@
+{
+	"appId": "com.bookmylook.app",
+	"appName": "BookMyLook",
+	"webDir": "dist/public",
+	"server": {
+		"androidScheme": "https"
+	},
+	"android": {},
+	"ios": {
+		"contentInset": "always"
+	},
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 2000,
+			"backgroundColor": "#1e40af",
+			"showSpinner": false
+		},
+		"StatusBar": {
+			"style": "light",
+			"backgroundColor": "#1e40af",
+			"overlay": true
+		}
+	},
+	"packageClassList": [
+		"Checkout"
+	]
+}
