@@ -21,12 +21,17 @@ workflows:
           npm install --legacy-peer-deps
           echo "=== Checking node_modules ==="
           ls -la node_modules/@capacitor/ios/ || echo "Capacitor iOS not found"
+      - name: Generate iOS assets
+        script: |
+          echo "=== Generating iOS app icons ==="
+          npx @capacitor/assets generate --ios
       - name: Check iOS folder structure
         script: |
           echo "=== Checking iOS folder structure ==="
           ls -la ios/
           ls -la ios/App/
-          cat ios/App/Podfile
+          ls -la ios/App/App/Assets.xcassets/AppIcon.appiconset/
+          cat ios/App/App/Assets.xcassets/AppIcon.appiconset/Contents.json
       - name: Install CocoaPods dependencies
         script: |
           cd ios/App
