@@ -24,14 +24,32 @@ workflows:
       - name: Generate iOS assets
         script: |
           echo "=== Generating iOS app icons ==="
-          npx @capacitor/assets generate --ios
+          cd ios/App/App/Assets.xcassets/AppIcon.appiconset
+          sips -z 120 120 AppIcon-512@2x.png --out AppIcon-60@2x.png
+          sips -z 180 180 AppIcon-512@2x.png --out AppIcon-60@3x.png
+          sips -z 76 76 AppIcon-512@2x.png --out AppIcon-76.png
+          sips -z 152 152 AppIcon-512@2x.png --out AppIcon-76@2x.png
+          sips -z 167 167 AppIcon-512@2x.png --out AppIcon-83.5@2x.png
+          sips -z 1024 1024 AppIcon-512@2x.png --out AppIcon-1024.png
+          ls -la
+          cat > Contents.json << 'EOF'
+          {
+            "images" : [
+              {"filename":"AppIcon-60@2x.png","idiom":"iphone","scale":"2x","size":"60x60"},
+              {"filename":"AppIcon-60@3x.png","idiom":"iphone","scale":"3x","size":"60x60"},
+              {"filename":"AppIcon-76.png","idiom":"ipad","scale":"1x","size":"76x76"},
+              {"filename":"AppIcon-76@2x.png","idiom":"ipad","scale":"2x","size":"76x76"},
+              {"filename":"AppIcon-83.5@2x.png","idiom":"ipad","scale":"2x","size":"83.5x83.5"},
+              {"filename":"AppIcon-1024.png","idiom":"ios-marketing","scale":"1x","size":"1024x1024"}
+            ],
+            "info":{"author":"xcode","version":1}
+          }
+          EOF
+          cat Contents.json
       - name: Check iOS folder structure
         script: |
           echo "=== Checking iOS folder structure ==="
-          ls -la ios/
-          ls -la ios/App/
           ls -la ios/App/App/Assets.xcassets/AppIcon.appiconset/
-          cat ios/App/App/Assets.xcassets/AppIcon.appiconset/Contents.json
       - name: Install CocoaPods dependencies
         script: |
           cd ios/App
