@@ -1,0 +1,91 @@
+workflows:
+  ios-production:
+    name: iOS Production Build
+    max_build_duration: 60
+    instance_type: mac_mini_m1
+    environment:
+      groups:
+        - app_store_connect
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.bookmylook.app
+      xcode: 16.2
+      vars:
+        XCODE_WORKSPACE: "ios/App/App.xcworkspace"
+        XCODE_SCHEME: "App"
+        BUNDLE_ID: "com.bookmylook.app"
+      node: 20
+    scripts:
+      - name: Install npm dependencies
+        script: |
+          npm install --legacy-peer-deps
+          echo "=== Checking node_modules ==="
+          ls -la node_modules/@capacitor/ios/ || echo "Capacitor iOS not found"
+      - name: Build web app
+        script: |
+          echo "=== Building web application ==="
+          npm run build
+          echo "=== Web app built successfully ==="
+      - name: Sync to iOS
+        script: |
+          echo "=== Syncing web app to iOS ==="
+          npx cap sync ios
+          echo "=== Sync complete ==="
+      - name: Generate iOS assets
+        script: |
+          echo "=== Generating iOS app icons ==="
+          cd ios/App/App/Assets.xcassets/AppIcon.appiconset
+          sips -z 120 120 AppIcon-512@2x.png --out AppIcon-60@2x.png
+          sips -z 180 180 AppIcon-512@2x.png --out AppIcon-60@3x.png
+          sips -z 76 76 AppIcon-512@2x.png --out AppIcon-76.png
+          sips -z 152 152 AppIcon-512@2x.png --out AppIcon-76@2x.png
+          sips -z 167 167 AppIcon-512@2x.png --out AppIcon-83.5@2x.png
+          sips -z 1024 1024 AppIcon-512@2x.png --out AppIcon-1024.png
+          ls -la
+          echo '{"images":[{"filename":"AppIcon-60@2x.png","idiom":"iphone","scale":"2x","size":"60x60"},{"filename":"AppIcon-60@3x.png","idiom":"iphone","scale":"3x","size":"60x60"},{"filename":"AppIcon-76.png","idiom":"ipad","scale":"1x","size":"76x76"},{"filename":"AppIcon-76@2x.png","idiom":"ipad","scale":"2x","size":"76x76"},{"filename":"AppIcon-83.5@2x.png","idiom":"ipad","scale":"2x","size":"83.5x83.5"},{"filename":"AppIcon-1024.png","idiom":"ios-marketing","scale":"1x","size":"1024x1024"}],"info":{"author":"xcode","version":1}}' > Contents.json
+          cat Contents.json
+      - name: Check iOS folder structure
+        script: |
+          echo "=== Checking iOS folder structure ==="
+          ls -la ios/
+          ls -la ios/App/
+          ls -la ios/App/App/Assets.xcassets/AppIcon.appiconset/
+          cat ios/App/App/Assets.xcassets/AppIcon.appiconset/Contents.json
+      - name: Install CocoaPods dependencies
+        script: |
+          cd ios/App
+          pod install --repo-update
+      - name: Initialize keychain
+        script: |
+          keychain initialize
+      - name: Add certificates to keychain
+        script: |
+          keychain add-certificates
+      - name: Set up code signing
+        script: |
+          xcode-project use-profiles
+      - name: Set build version
+        script: |
+          cd ios/App
+          agvtool new-version -all 79
+          agvtool new-marketing-version 2.9.0
+      - name: Build iOS app
+        script: |
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "$XCODE_SCHEME"
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+    publishing:
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+        submit_to_testflight: true
+      email:
+        recipients:
+          - listenrayees@gmail.com
+        notify:
+          success: true
+          failure: true
