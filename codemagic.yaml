@@ -25,6 +25,7 @@ workflows:
         script: |
           echo "=== Generating iOS app icons ==="
           cd ios/App/App/Assets.xcassets/AppIcon.appiconset
+          # Create all required icon sizes from the 1024x1024 source
           sips -z 120 120 AppIcon-512@2x.png --out AppIcon-60@2x.png
           sips -z 180 180 AppIcon-512@2x.png --out AppIcon-60@3x.png
           sips -z 76 76 AppIcon-512@2x.png --out AppIcon-76.png
@@ -32,24 +33,61 @@ workflows:
           sips -z 167 167 AppIcon-512@2x.png --out AppIcon-83.5@2x.png
           sips -z 1024 1024 AppIcon-512@2x.png --out AppIcon-1024.png
           ls -la
+          # Update Contents.json with all sizes
           cat > Contents.json << 'EOF'
-          {
-            "images" : [
-              {"filename":"AppIcon-60@2x.png","idiom":"iphone","scale":"2x","size":"60x60"},
-              {"filename":"AppIcon-60@3x.png","idiom":"iphone","scale":"3x","size":"60x60"},
-              {"filename":"AppIcon-76.png","idiom":"ipad","scale":"1x","size":"76x76"},
-              {"filename":"AppIcon-76@2x.png","idiom":"ipad","scale":"2x","size":"76x76"},
-              {"filename":"AppIcon-83.5@2x.png","idiom":"ipad","scale":"2x","size":"83.5x83.5"},
-              {"filename":"AppIcon-1024.png","idiom":"ios-marketing","scale":"1x","size":"1024x1024"}
-            ],
-            "info":{"author":"xcode","version":1}
-          }
-          EOF
+{
+  "images" : [
+    {
+      "filename" : "AppIcon-60@2x.png",
+      "idiom" : "iphone",
+      "scale" : "2x",
+      "size" : "60x60"
+    },
+    {
+      "filename" : "AppIcon-60@3x.png",
+      "idiom" : "iphone",
+      "scale" : "3x",
+      "size" : "60x60"
+    },
+    {
+      "filename" : "AppIcon-76.png",
+      "idiom" : "ipad",
+      "scale" : "1x",
+      "size" : "76x76"
+    },
+    {
+      "filename" : "AppIcon-76@2x.png",
+      "idiom" : "ipad",
+      "scale" : "2x",
+      "size" : "76x76"
+    },
+    {
+      "filename" : "AppIcon-83.5@2x.png",
+      "idiom" : "ipad",
+      "scale" : "2x",
+      "size" : "83.5x83.5"
+    },
+    {
+      "filename" : "AppIcon-1024.png",
+      "idiom" : "ios-marketing",
+      "scale" : "1x",
+      "size" : "1024x1024"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
+EOF
           cat Contents.json
       - name: Check iOS folder structure
         script: |
           echo "=== Checking iOS folder structure ==="
+          ls -la ios/
+          ls -la ios/App/
           ls -la ios/App/App/Assets.xcassets/AppIcon.appiconset/
+          cat ios/App/App/Assets.xcassets/AppIcon.appiconset/Contents.json
       - name: Install CocoaPods dependencies
         script: |
           cd ios/App
@@ -66,8 +104,8 @@ workflows:
       - name: Set build version
         script: |
           cd ios/App
-          agvtool new-version -all 74
-          agvtool new-marketing-version 2.8.4
+          agvtool new-version -all 75
+          agvtool new-marketing-version 2.8.5
       - name: Build iOS app
         script: |
           xcode-project build-ipa \

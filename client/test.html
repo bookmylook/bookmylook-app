@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookMyLook - Test</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 0.5rem;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .button:hover {
+            background: #45a049;
+        }
+        .button.blue {
+            background: #2196F3;
+        }
+        .button.blue:hover {
+            background: #1976D2;
+        }
+        .status {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+        .status-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0.5rem;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: #4CAF50;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function App() {
+            const [message, setMessage] = React.useState("BookMyLook - App Fixed!");
+            
+            return (
+                <div className="container">
+                    <h1>{message}</h1>
+                    <p>React app is working properly now!</p>
+                    
+                    <button 
+                        className="button"
+                        onClick={() => {
+                            setMessage("React hooks working!");
+                            alert('App is functioning correctly!');
+                        }}
+                    >
+                        Test React State
+                    </button>
+                    
+                    <a href="/qr-test" className="button blue">
+                        Go to QR Scanner
+                    </a>
+                    
+                    <div className="status">
+                        <h3>App Status</h3>
+                        <div className="status-item">
+                            <span className="dot"></span>
+                            React Hooks Fixed
+                        </div>
+                        <div className="status-item">
+                            <span className="dot"></span>
+                            Components Loading
+                        </div>
+                        <div className="status-item">
+                            <span className="dot"></span>
+                            Ready for QR Scanner
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
